@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:GPB00.ViewModels"
+             xmlns:models="clr-namespace:GPB00.Models"
+             x:DataType="viewmodels:ProductsViewModel"
+             x:DataType="models:Product"
+             x:Class="GPB00.MainPage">
+
+    <Grid Padding="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="AUTO" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="AUTO" />
+        </Grid.RowDefinitions>
+        
+        <!--products-->
+        <HorizontalStackLayout>
+            <Label FontSize="24" FontFamily="RobotoBold" Text="All "/>
+            <Label FontSize="24" FontFamily="RobotoBold" Text="Products" TextColor="{StaticResource GeniaGreen}"/>
+        </HorizontalStackLayout>
+        <!--products you have created-->
+        <Label Text="products you have created"
+               Grid.Row="1"
+               TextColor="DarkGrey" />
+        <!--scrollable list of products-->
+        <CollectionView ItemsSource="{Binding Products}" Grid.Row="2">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="20" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Product">
+                    <Border MinimumHeightRequest="315" Stroke="{StaticResource GeniaGreen}">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding Image}" Aspect="AspectFill" Grid.Column="1"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!--create new product button-->
+        <Button Text="create new product" BackgroundColor="{StaticResource GeniaGreen}" Padding="16" CornerRadius="2" Grid.Row="3"/>
+    </Grid>
+    
+
+</ContentPage>
+
